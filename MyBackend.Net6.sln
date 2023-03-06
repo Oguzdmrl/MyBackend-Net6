@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{B278ACC8-71EA-4B09-B41D-5FA28D6E58EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "Api\WebAPI\WebAPI.csproj", "{B278ACC8-71EA-4B09-B41D-5FA28D6E58EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{B47C4F4C-5758-4F8F-B9B3-440A4F089E1D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "ApiCore\Entities\Entities.csproj", "{B47C4F4C-5758-4F8F-B9B3-440A4F089E1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{41224B20-02F3-4ED4-A62C-2912D897EC45}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "ApiCore\DataAccess\DataAccess.csproj", "{41224B20-02F3-4ED4-A62C-2912D897EC45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{EF461737-6D12-42E7-93B7-1355B16D85E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "ApiCore\Services\Services.csproj", "{EF461737-6D12-42E7-93B7-1355B16D85E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{15B109F7-7CCA-4C2D-98F7-3844DC038798}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "ApiCore\Core\Core.csproj", "{15B109F7-7CCA-4C2D-98F7-3844DC038798}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{D0C83293-431C-4F32-8A09-098EADADC7A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiCore", "ApiCore", "{6850F660-1CD8-42F1-8DE0-A4A179BDEABE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +46,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B278ACC8-71EA-4B09-B41D-5FA28D6E58EE} = {D0C83293-431C-4F32-8A09-098EADADC7A5}
+		{B47C4F4C-5758-4F8F-B9B3-440A4F089E1D} = {6850F660-1CD8-42F1-8DE0-A4A179BDEABE}
+		{41224B20-02F3-4ED4-A62C-2912D897EC45} = {6850F660-1CD8-42F1-8DE0-A4A179BDEABE}
+		{EF461737-6D12-42E7-93B7-1355B16D85E6} = {6850F660-1CD8-42F1-8DE0-A4A179BDEABE}
+		{15B109F7-7CCA-4C2D-98F7-3844DC038798} = {6850F660-1CD8-42F1-8DE0-A4A179BDEABE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EE156737-7186-455F-8CAD-D2F636E84C52}
