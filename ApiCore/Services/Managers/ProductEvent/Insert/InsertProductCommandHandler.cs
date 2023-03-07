@@ -1,9 +1,9 @@
 ﻿using Core.Results;
 using Entities;
 using MediatR;
-using Services.TService;
+using Business.TService;
 
-namespace Services.Managers.ProductEvent.Insert
+namespace Business.Managers.ProductEvent.Insert
 {
     public partial class InsertProductCommandHandler : IRequestHandler<InsertProductCommandQuery, ResponseDataResult<Product>>
     {

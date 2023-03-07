@@ -2,7 +2,7 @@
 using Entities;
 using MediatR;
 
-namespace Services.Managers.CategoryEvent.Select
+namespace Business.Managers.CategoryEvent.Select
 {
     public partial class GetCategoryQuery : IRequest<ResponseDataResult<Category>>
     {

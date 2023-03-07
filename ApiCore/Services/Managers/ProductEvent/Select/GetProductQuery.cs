@@ -2,7 +2,7 @@
 using Entities;
 using MediatR;
 
-namespace Services.Managers.ProductEvent.Select
+namespace Business.Managers.ProductEvent.Select
 {
     public partial class GetProductQuery : IRequest<ResponseDataResult<Product>>
     {

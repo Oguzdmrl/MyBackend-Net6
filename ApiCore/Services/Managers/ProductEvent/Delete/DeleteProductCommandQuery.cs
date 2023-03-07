@@ -2,7 +2,7 @@
 using Entities;
 using MediatR;
 
-namespace Services.Managers.ProductEvent.Delete
+namespace Business.Managers.ProductEvent.Delete
 {
     public partial class DeleteProductCommandQuery : IRequest<ResponseDataResult<Product>>
     {

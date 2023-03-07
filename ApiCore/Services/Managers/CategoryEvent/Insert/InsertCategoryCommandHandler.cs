@@ -1,9 +1,9 @@
 ﻿using Core.Results;
 using Entities;
 using MediatR;
-using Services.TService;
+using Business.TService;
 
-namespace Services.Managers.CategoryEvent.Insert
+namespace Business.Managers.CategoryEvent.Insert
 {
     public partial class InsertCategoryCommandHandler : IRequestHandler<InsertCategoryCommandQuery, ResponseDataResult<Category>>
     {

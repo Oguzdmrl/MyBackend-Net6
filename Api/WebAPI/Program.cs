@@ -1,10 +1,9 @@
+using Business.TService;
 using DataAccess;
 using DataAccess.Repo.UnitOfWorks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Services.TService;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +18,6 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
-
 builder.Services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
 
 builder.Services.AddScoped(typeof(IService<>), typeof(Service<>)); // Düzenlenicek

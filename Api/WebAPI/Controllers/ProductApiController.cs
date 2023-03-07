@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Services.Managers.ProductEvent.Delete;
-using Services.Managers.ProductEvent.Insert;
-using Services.Managers.ProductEvent.Select;
-using Services.Managers.ProductEvent.Update;
+using Business.Managers.ProductEvent.Delete;
+using Business.Managers.ProductEvent.Insert;
+using Business.Managers.ProductEvent.Select;
+using Business.Managers.ProductEvent.Update;
 
 namespace WebAPI.Controllers
 {

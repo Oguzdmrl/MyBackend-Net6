@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Services.Managers.CategoryEvent.Insert;
-using Services.Managers.CategoryEvent.Select;
+using Business.Managers.CategoryEvent.Insert;
+using Business.Managers.CategoryEvent.Select;
 
 namespace WebAPI.Controllers
 {

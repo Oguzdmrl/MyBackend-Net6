@@ -1,9 +1,9 @@
 ﻿using Core.Results;
 using Entities;
 using MediatR;
-using Services.TService;
+using Business.TService;
 
-namespace Services.Managers.CategoryEvent.Select
+namespace Business.Managers.CategoryEvent.Select
 {
     public partial class GetCategoryHandler : IRequestHandler<GetCategoryQuery, ResponseDataResult<Category>>
     {

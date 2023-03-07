@@ -2,7 +2,7 @@
 using Entities;
 using MediatR;
 
-namespace Services.Managers.ProductEvent.Insert
+namespace Business.Managers.ProductEvent.Insert
 {
     public partial class InsertProductCommandQuery : IRequest<ResponseDataResult<Product>>
     {

@@ -1,7 +1,7 @@
 ﻿using Core.Results;
 using System.Linq.Expressions;
 
-namespace Services.TService
+namespace Business.TService
 {
     public interface IService<T>
     {

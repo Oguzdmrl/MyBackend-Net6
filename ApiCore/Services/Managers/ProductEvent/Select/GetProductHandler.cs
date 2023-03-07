@@ -1,9 +1,9 @@
 ﻿using Core.Results;
 using Entities;
 using MediatR;
-using Services.TService;
+using Business.TService;
 
-namespace Services.Managers.ProductEvent.Select
+namespace Business.Managers.ProductEvent.Select
 {
     public partial class GetProductHandler : IRequestHandler<GetProductQuery, ResponseDataResult<Product>>
     {

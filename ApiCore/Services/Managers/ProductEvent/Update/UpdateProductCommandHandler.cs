@@ -1,9 +1,9 @@
-﻿using Core.Results;
+﻿using Business.TService;
+using Core.Results;
 using Entities;
 using MediatR;
-using Services.TService;
 
-namespace Services.Managers.ProductEvent.Update
+namespace Business.Managers.ProductEvent.Update
 {
     public partial class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommandQuery, ResponseDataResult<Product>>
     {

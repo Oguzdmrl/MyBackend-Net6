@@ -1,9 +1,9 @@
 ﻿using Core.Results;
 using Entities;
 using MediatR;
-using Services.TService;
+using Business.TService;
 
-namespace Services.Managers.ProductEvent.Delete
+namespace Business.Managers.ProductEvent.Delete
 {
     public partial class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommandQuery, ResponseDataResult<Product>>
     {

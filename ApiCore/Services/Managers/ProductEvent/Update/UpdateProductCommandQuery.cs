@@ -2,7 +2,7 @@
 using Entities;
 using MediatR;
 
-namespace Services.Managers.ProductEvent.Update
+namespace Business.Managers.ProductEvent.Update
 {
     public partial class UpdateProductCommandQuery : IRequest<ResponseDataResult<Product>>
     {

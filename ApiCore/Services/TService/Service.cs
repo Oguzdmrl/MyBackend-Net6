@@ -3,7 +3,7 @@ using DataAccess.Repo.UnitOfWorks;
 using Entities.Base;
 using System.Linq.Expressions;
 
-namespace Services.TService
+namespace Business.TService
 {
     public class Service<T> : IService<T> where T : BaseEntity<Guid>
     {
