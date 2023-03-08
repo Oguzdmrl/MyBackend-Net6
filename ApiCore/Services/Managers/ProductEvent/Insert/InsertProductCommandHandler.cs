@@ -11,7 +11,7 @@ namespace Business.Managers.ProductEvent.Insert
         public InsertProductCommandHandler(IService<Product> service) => _service = service;
         public async Task<ResponseDataResult<Product>> Handle(InsertProductCommandQuery request, CancellationToken cancellationToken)
         {
-            return await Task.FromResult(await _service.Insert(new Product()
+            return await Task.FromResult(await _service.InsertAsync(new Product()
             {
                 Name = request.Name,
                 Description = request.Description,

@@ -9,18 +9,18 @@ namespace Business.Managers.UserEvent.Select
     {
         private readonly IService<User> _service;
         public GetUserHandler(IService<User> service) => _service = service;
-        public async Task<ResponseDataResult<User>> Handle(GetUserQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseDataResult<User>> Handle(GetUserQuery request, CancellationToken cancellation)
         {
-            return await Task.FromResult(await _service.GetAll());
+            return await Task.FromResult(await _service.GetAllAsync());
         }
     }
     public partial class GetUserIDHandler : IRequestHandler<GetUserIDQuery, ResponseDataResult<User>>
     {
         private readonly IService<User> _service;
         public GetUserIDHandler(IService<User> service) => _service = service;
-        public async Task<ResponseDataResult<User>> Handle(GetUserIDQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseDataResult<User>> Handle(GetUserIDQuery request, CancellationToken cancellation)
         {
-            return await Task.FromResult(await _service.GetAll(x => x.ID == request.UserID));
+            return await Task.FromResult(await _service.GetAllAsync(x => x.ID == request.UserID));
         }
     }
 }

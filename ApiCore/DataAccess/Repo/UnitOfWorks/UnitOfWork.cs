@@ -1,6 +1,7 @@
 ﻿using DataAccess.Repo.BaseRepository.CommandRepository;
 using DataAccess.Repo.BaseRepository.QueryableRepository;
 using Entities.Base;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Repo.UnitOfWorks
 {
@@ -8,7 +9,6 @@ namespace DataAccess.Repo.UnitOfWorks
     {
         private readonly AppDBContext _context;
         private Dictionary<Type, object> _repositories;
-
 
         public Dictionary<Type, object> Repositories
         {
@@ -32,7 +32,6 @@ namespace DataAccess.Repo.UnitOfWorks
             }
             return await Task.FromResult(Repositories[typeof(T)] as IQueryableRepository<T>);
         }
-
         public async Task<ICommandRepository<T>> CommandRepositories<T>() where T : BaseEntity<Guid>
         {
             if (_repositories is null) { _repositories = new(); }
@@ -44,7 +43,6 @@ namespace DataAccess.Repo.UnitOfWorks
             }
             return await Task.FromResult(Repositories[typeof(T)] as ICommandRepository<T>);
         }
-
         public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
         public async void Dispose()
         {

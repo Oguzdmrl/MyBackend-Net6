@@ -15,21 +15,20 @@ namespace DataAccess.Repo.BaseRepository.CommandRepository
             _context = context;
             _uow = new(context);
         }
-
-        public virtual async Task<ResponseDataResult<T>> Insert(T entity)
+        public virtual async Task<ResponseDataResult<T>> InsertAsync(T entity)
         {
             EntityEntry<T> result = await _context.Set<T>().AddAsync(entity);
             await _uow.SaveChangesAsync();
             return await Task.FromResult(new ResponseDataResult<T>() { ResponseModel = result.Entity, Status = true, Message = "Ekleme İşlemi Başarılı." });
         }
-        public virtual async Task<ResponseDataResult<T>> Update(T entity)
+        public virtual async Task<ResponseDataResult<T>> UpdateAsync(T entity)
         {
             EntityEntry<T> result = _context.Entry(entity);
             result.State = EntityState.Modified;
             await _uow.SaveChangesAsync();
             return await Task.FromResult(new ResponseDataResult<T>() { ResponseModel = result.Entity, Status = true, Message = "Güncelleme İşlemi Başarılı." });
         }
-        public virtual async Task<ResponseDataResult<T>> Delete(T entity)
+        public virtual async Task<ResponseDataResult<T>> DeleteAsync(T entity)
         {
             EntityEntry<T> result = _context.Set<T>().Remove(entity);
             await _uow.SaveChangesAsync();

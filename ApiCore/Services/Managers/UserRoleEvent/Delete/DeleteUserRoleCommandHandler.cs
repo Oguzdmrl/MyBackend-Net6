@@ -12,7 +12,7 @@ namespace Business.Managers.UserRoleEvent.Delete
         public DeleteUserRoleCommandHandler(IService<UserRole> service) => _service = service;
         public async Task<ResponseDataResult<UserRole>> Handle(DeleteUserRoleCommandQuery request, CancellationToken cancellationToken)
         {
-            return await Task.FromResult(await _service.Delete(new UserRole() { ID = request.UserRoleID }));
+            return await Task.FromResult(await _service.DeleteAsync(new UserRole() { ID = request.UserRoleID }));
         }
     }
 }

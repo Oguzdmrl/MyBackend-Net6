@@ -9,18 +9,18 @@ namespace Business.Managers.CategoryEvent.Select
     {
         private readonly IService<Category> _service;
         public GetCategoryHandler(IService<Category> service) => _service = service;
-        public async Task<ResponseDataResult<Category>> Handle(GetCategoryQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseDataResult<Category>> Handle(GetCategoryQuery request, CancellationToken cancellation)
         {
-            return await Task.FromResult(await _service.GetAll());
+            return await Task.FromResult(await _service.GetAllAsync());
         }
     }
     public partial class GetCategoryIDHandler : IRequestHandler<GetCategoryIDQuery, ResponseDataResult<Category>>
     {
         private readonly IService<Category> _service;
         public GetCategoryIDHandler(IService<Category> service) => _service = service;
-        public async Task<ResponseDataResult<Category>> Handle(GetCategoryIDQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseDataResult<Category>> Handle(GetCategoryIDQuery request, CancellationToken cancellation)
         {
-            return await Task.FromResult(await _service.GetAll(x => x.ID == request.CategoryID));
+            return await Task.FromResult(await _service.GetAllAsync(x => x.ID == request.CategoryID));
         }
     }
 }

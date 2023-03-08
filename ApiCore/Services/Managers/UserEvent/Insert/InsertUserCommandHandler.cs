@@ -11,7 +11,7 @@ namespace Business.Managers.UserEvent.Insert
         public InsertUserCommandHandler(IService<User> service) => _service = service;
         public async Task<ResponseDataResult<User>> Handle(InsertUserCommandQuery request, CancellationToken cancellationToken)
         {
-            return await Task.FromResult(await _service.Insert(new User()
+            return await Task.FromResult(await _service.InsertAsync(new User()
             {
                 Name = request.Name,
                 Surname = request.Surname,

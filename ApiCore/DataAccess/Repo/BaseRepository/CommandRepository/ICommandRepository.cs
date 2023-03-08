@@ -5,8 +5,8 @@ namespace DataAccess.Repo.BaseRepository.CommandRepository
 {
     public interface ICommandRepository<T> where T : BaseEntity<Guid>
     {
-        Task<ResponseDataResult<T>> Insert(T entity);
-        Task<ResponseDataResult<T>> Update(T entity);
-        Task<ResponseDataResult<T>> Delete(T entity);
+        Task<ResponseDataResult<T>> InsertAsync(T entity);
+        Task<ResponseDataResult<T>> UpdateAsync(T entity);
+        Task<ResponseDataResult<T>> DeleteAsync(T entity);
     }
 }

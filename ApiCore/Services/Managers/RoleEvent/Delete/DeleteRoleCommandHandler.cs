@@ -11,7 +11,7 @@ namespace Business.Managers.RoleEvent.Delete
         public DeleteRoleCommandHandler(IService<Role> service) => _service = service;
         public async Task<ResponseDataResult<Role>> Handle(DeleteRoleCommandQuery request, CancellationToken cancellationToken)
         {
-            return await Task.FromResult(await _service.Delete(new Role() { ID = request.RoleID }));
+            return await Task.FromResult(await _service.DeleteAsync(new Role() { ID = request.RoleID }));
         }
     }
 }

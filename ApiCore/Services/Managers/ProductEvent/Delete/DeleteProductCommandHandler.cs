@@ -11,7 +11,7 @@ namespace Business.Managers.ProductEvent.Delete
         public DeleteProductCommandHandler(IService<Product> service) => _service = service;
         public async Task<ResponseDataResult<Product>> Handle(DeleteProductCommandQuery request, CancellationToken cancellationToken)
         {
-            return await Task.FromResult(await _service.Delete(new Product() { ID = request.ProductID }));
+            return await Task.FromResult(await _service.DeleteAsync(new Product() { ID = request.ProductID }));
         }
     }
 }

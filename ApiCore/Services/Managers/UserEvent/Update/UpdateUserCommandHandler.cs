@@ -11,7 +11,7 @@ namespace Business.Managers.UserEvent.Update
         public UpdateUserCommandHandler(IService<User> service) => _service = service;
         public async Task<ResponseDataResult<User>> Handle(UpdateUserCommandQuery request, CancellationToken cancellationToken)
         {
-            var GetModel = await _service.GetAll(x => x.ID == request.UserID);
+            var GetModel = await _service.GetAllAsync( x => x.ID == request.UserID);
             if (GetModel.ModelCount > 0)
             {
                 GetModel.ListResponseModel.FirstOrDefault().Name = request.Name;
@@ -21,7 +21,7 @@ namespace Business.Managers.UserEvent.Update
                 GetModel.ListResponseModel.FirstOrDefault().Email = request.Email;
                 GetModel.ListResponseModel.FirstOrDefault().Updated_Date = DateTime.Now;
             }
-            return await Task.FromResult(await _service.Update(GetModel.ListResponseModel.FirstOrDefault()));
+            return await Task.FromResult(await _service.UpdateAsync(GetModel.ListResponseModel.FirstOrDefault()));
         }
     }
 }

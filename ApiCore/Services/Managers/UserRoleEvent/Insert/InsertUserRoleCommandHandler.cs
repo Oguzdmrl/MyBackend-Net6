@@ -11,7 +11,7 @@ namespace Business.Managers.UserRoleEvent.Insert
         public InsertUserRoleCommandHandler(IService<UserRole> service) => _service = service;
         public async Task<ResponseDataResult<UserRole>> Handle(InsertUserRoleCommandQuery request, CancellationToken cancellationToken)
         {
-            return await Task.FromResult(await _service.Insert(new UserRole() { UserId = request.UserId, RoleId = request.RoleId }));
+            return await Task.FromResult(await _service.InsertAsync(new UserRole() { UserId = request.UserId, RoleId = request.RoleId }));
         }
     }
 }

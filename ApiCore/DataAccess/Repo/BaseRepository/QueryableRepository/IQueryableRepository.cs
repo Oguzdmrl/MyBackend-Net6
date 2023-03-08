@@ -6,9 +6,10 @@ namespace DataAccess.Repo.BaseRepository.QueryableRepository
 {
     public interface IQueryableRepository<T> where T : BaseEntity<Guid>
     {
-        Task<ResponseDataResult<T>> Get(Guid ID);
-        Task<ResponseDataResult<T>> GetAll();
-        Task<ResponseDataResult<T>> GetAll(Expression<Func<T, bool>> predicate);
-        Task<ResponseDataResult<T>> GetAllInculude(params Expression<Func<T, object>>[] Parametre);
+        Task<ResponseDataResult<T>> GetAsync(Guid ID);
+        Task<ResponseDataResult<T>> GetAllAsync();
+        Task<ResponseDataResult<T>> GetAllAsync(Expression<Func<T, bool>> predicate);
+        Task<ResponseDataResult<T>> GetAllInculudeAsync(Expression<Func<T, object>>[] Parametre);
+        Task<ResponseDataResult<T>> GetAllInculudeAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] Parametre);
     }
 }

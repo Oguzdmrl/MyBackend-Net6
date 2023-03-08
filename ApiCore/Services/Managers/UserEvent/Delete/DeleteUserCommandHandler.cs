@@ -11,7 +11,7 @@ namespace Business.Managers.UserEvent.Delete
         public DeleteUserCommandHandler(IService<User> service) => _service = service;
         public async Task<ResponseDataResult<User>> Handle(DeleteUserCommandQuery request, CancellationToken cancellationToken)
         {
-            return await Task.FromResult(await _service.Delete(new User() { ID = request.UserID }));
+            return await Task.FromResult(await _service.DeleteAsync(new User() { ID = request.UserID }));
         }
     }
 }

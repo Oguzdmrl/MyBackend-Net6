@@ -11,14 +11,14 @@ namespace Business.Managers.RoleEvent.Update
         public UpdateRoleCommandHandler(IService<Role> service) => _service = service;
         public async Task<ResponseDataResult<Role>> Handle(UpdateRoleCommandQuery request, CancellationToken cancellationToken)
         {
-            var GetModel = await _service.GetAll(x => x.ID == request.RoleID);
+            var GetModel = await _service.GetAllAsync(x => x.ID == request.RoleID);
             if (GetModel.ModelCount > 0)
             {
                 GetModel.ListResponseModel.FirstOrDefault().Name = request.Name;
                 GetModel.ListResponseModel.FirstOrDefault().Description = request.Description;
                 GetModel.ListResponseModel.FirstOrDefault().Updated_Date = DateTime.Now;
             }
-            return await Task.FromResult(await _service.Update(GetModel.ListResponseModel.FirstOrDefault()));
+            return await Task.FromResult(await _service.UpdateAsync(GetModel.ListResponseModel.FirstOrDefault()));
         }
     }
 }

@@ -9,18 +9,18 @@ namespace Business.Managers.RoleEvent.Select
     {
         private readonly IService<Role> _service;
         public GetRoleHandler(IService<Role> service) => _service = service;
-        public async Task<ResponseDataResult<Role>> Handle(GetRoleQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseDataResult<Role>> Handle(GetRoleQuery request, CancellationToken cancellation)
         {
-            return await Task.FromResult(await _service.GetAll());
+            return await Task.FromResult(await _service.GetAllAsync());
         }
     }
     public partial class GetRoleIDHandler : IRequestHandler<GetRoleIDQuery, ResponseDataResult<Role>>
     {
         private readonly IService<Role> _service;
         public GetRoleIDHandler(IService<Role> service) => _service = service;
-        public async Task<ResponseDataResult<Role>> Handle(GetRoleIDQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseDataResult<Role>> Handle(GetRoleIDQuery request, CancellationToken cancellation)
         {
-            return await Task.FromResult(await _service.GetAll(x => x.ID == request.RoleID));
+            return await Task.FromResult(await _service.GetAllAsync(x => x.ID == request.RoleID));
         }
     }
 }

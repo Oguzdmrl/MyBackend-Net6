@@ -11,7 +11,7 @@ namespace Business.Managers.CategoryEvent.Insert
         public InsertCategoryCommandHandler(Service<Category> service) => _service = service;
         public async Task<ResponseDataResult<Category>> Handle(InsertCategoryCommandQuery request, CancellationToken cancellationToken)
         {
-            return await Task.FromResult(await _service.Insert(new Category() { Name = request.Name }));
+            return await Task.FromResult(await _service.InsertAsync(new Category() { Name = request.Name }));
         }
     }
 }

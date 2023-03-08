@@ -9,22 +9,21 @@ namespace DataAccess.Repo.BaseRepository.QueryableRepository
     {
         private ResponseDataResult<T> _response;
         private DbSet<T> Table;
-
         protected AppDBContext _context;
+
         public QueryableRepository(AppDBContext context)
         {
             _context = context;
             Table ??= _context.Set<T>();
-            _response = new(false, "Veri bulunamadı");
+            _response = new(false, "İçerik boş");
         }
-
-        public virtual async Task<ResponseDataResult<T>> Get(Guid ID)
+        public async Task<ResponseDataResult<T>> GetAsync(Guid ID)
         {
-            return await Task.FromResult(new ResponseDataResult<T>() { ResponseModel = await _context.Set<T>().FirstOrDefaultAsync(p => p.ID == ID), Status = true, Message = "Listeleme İşlemi Başarılı." });
+            return await Task.FromResult(new ResponseDataResult<T>() { ResponseModel = await Table.FindAsync(ID), Status = true, Message = "Listeleme İşlemi Başarılı." });
         }
-        public virtual async Task<ResponseDataResult<T>> GetAll()
+        public async Task<ResponseDataResult<T>> GetAllAsync()
         {
-            IEnumerable<T> Model = await _context.Set<T>().ToListAsync();
+            IEnumerable<T> Model = await Table.ToListAsync();
             if (Model.Count() == 0) return await Task.FromResult(_response);
 
             return await Task.FromResult(new ResponseDataResult<T>()
@@ -35,7 +34,7 @@ namespace DataAccess.Repo.BaseRepository.QueryableRepository
                 ModelCount = Model.ToList().Count,
             });
         }
-        public virtual async Task<ResponseDataResult<T>> GetAll(Expression<Func<T, bool>> predicate)
+        public async Task<ResponseDataResult<T>> GetAllAsync(Expression<Func<T, bool>> predicate)
         {
             IEnumerable<T> Model = await Table.Where(predicate).ToListAsync();
 
@@ -49,12 +48,13 @@ namespace DataAccess.Repo.BaseRepository.QueryableRepository
                 Message = $"Listeleme İşlemi Başarılı : [{Model.ToList().Count}] Adet Veri Çekildi"
             });
         }
-        public async Task<ResponseDataResult<T>> GetAllInculude(params Expression<Func<T, object>>[] Parametre)
+        public async Task<ResponseDataResult<T>> GetAllInculudeAsync(params Expression<Func<T, object>>[] Parametre)
         {
-            Parametre.ToList().ForEach(x => Table.Include(x).LoadAsync());
+            Parametre.ToList().ForEach(x => Table.Include(x).Load());
             IEnumerable<T> Model = Table;
 
-            if (Model.Count() == 0) return await Task.FromResult(_response);
+            if (Model.Count() == 0)
+                return await Task.FromResult(_response);
 
             return await Task.FromResult(new ResponseDataResult<T>()
             {
@@ -64,6 +64,23 @@ namespace DataAccess.Repo.BaseRepository.QueryableRepository
                 Message = $"Listeleme İşlemi Başarılı : [{Model.ToList().Count}] Adet Veri Çekildi"
             });
         }
-    }
 
+        public async Task<ResponseDataResult<T>> GetAllInculudeAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] Parametre)
+        {
+            Parametre.ToList().ForEach(x => Table.Include(x).Load());
+            IEnumerable<T> Model = Table.Where(predicate);
+            if (Model.Count() == 0)
+                return await Task.FromResult(_response);
+
+            return await Task.FromResult(new ResponseDataResult<T>()
+            {
+                ListResponseModel = Model,
+                Status = true,
+                ModelCount = Model.ToList().Count,
+                Message = $"Listeleme İşlemi Başarılı : [{Model.ToList().Count}] Adet Veri Çekildi"
+            });
+        }
+
+
+    }
 }
