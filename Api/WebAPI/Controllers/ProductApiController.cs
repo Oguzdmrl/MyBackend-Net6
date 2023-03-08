@@ -4,9 +4,11 @@ using Business.Managers.ProductEvent.Delete;
 using Business.Managers.ProductEvent.Insert;
 using Business.Managers.ProductEvent.Select;
 using Business.Managers.ProductEvent.Update;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class ProductApiController : ControllerBase

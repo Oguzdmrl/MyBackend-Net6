@@ -3,10 +3,12 @@ using Business.Managers.UserRoleEvent.Insert;
 using Business.Managers.UserRoleEvent.Select;
 using Business.Managers.UserRoleEvent.Update;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class UserRoleApiController : ControllerBase

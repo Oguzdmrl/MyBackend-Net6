@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Business.Managers.CategoryEvent.Insert;
 using Business.Managers.CategoryEvent.Select;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class CategoryApiController : ControllerBase

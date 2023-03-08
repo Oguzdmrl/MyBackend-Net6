@@ -19,7 +19,7 @@ namespace DataAccess.Repo.BaseRepository.CommandRepository
         {
             EntityEntry<T> result = await _context.Set<T>().AddAsync(entity);
             await _uow.SaveChangesAsync();
-            return await Task.FromResult(new ResponseDataResult<T>() { ResponseModel = result.Entity, Status = true, Message = "Ekleme İşlemi Başarılı." });
+            return await Task.FromResult(new ResponseDataResult<T>() { ResponseModel = result.Entity, Status = true, Message = "Kayıt İşlemi Başarılı." });
         }
         public virtual async Task<ResponseDataResult<T>> UpdateAsync(T entity)
         {

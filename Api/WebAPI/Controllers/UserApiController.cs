@@ -3,10 +3,12 @@ using Business.Managers.UserEvent.Insert;
 using Business.Managers.UserEvent.Select;
 using Business.Managers.UserEvent.Update;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class UserApiController : ControllerBase
