@@ -11,13 +11,12 @@ namespace Business.Managers.ProductEvent.Insert
         public InsertProductCommandHandler(IService<Product> service) => _service = service;
         public async Task<ResponseDataResult<Product>> Handle(InsertProductCommandQuery request, CancellationToken cancellationToken)
         {
-            Product _Product = new()
+            return await Task.FromResult(await _service.Insert(new Product()
             {
                 Name = request.Name,
                 Description = request.Description,
                 CategoryID = request.CategoryID
-            };
-            return await Task.FromResult(await _service.Insert(_Product));
+            }));
         }
     }
 }
