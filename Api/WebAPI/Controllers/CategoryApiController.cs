@@ -1,8 +1,9 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
+﻿using Business.Authorization;
 using Business.Managers.CategoryEvent.Insert;
 using Business.Managers.CategoryEvent.Select;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
@@ -13,10 +14,9 @@ namespace WebAPI.Controllers
     {
         private readonly IMediator _mediator;
         public CategoryApiController(IMediator mediator) => _mediator = mediator;
-        [HttpGet]
-        public async Task<IActionResult> GetAll() => Ok(await _mediator.Send(new GetCategoryQuery()));
 
-        [HttpPost]
-        public async Task<IActionResult> InsertCategory([FromBody] InsertCategoryCommandQuery param) => Ok(await _mediator.Send(param));
+        [HttpGet/*, AuthorizationRole("Admin,User")*/] public async Task<IActionResult> GetAll() => Ok(await _mediator.Send(new GetCategoryQuery()));
+
+        [HttpPost/*, AuthorizationRole("Admin,Insert")*/] public async Task<IActionResult> InsertCategory([FromBody] InsertCategoryCommandQuery param) => Ok(await _mediator.Send(param));
     }
 }

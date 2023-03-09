@@ -15,17 +15,17 @@ namespace WebAPI.Controllers
     {
         private readonly IMediator _mediator;
         public UserRoleApiController(IMediator mediator) => _mediator = mediator;
-        [HttpGet]
+        [HttpGet/*, AuthorizationRole("Admin")*/]
         public async Task<IActionResult> GetAll() => Ok(await _mediator.Send(new GetUserRoleQuery()));
-        //[HttpGet]
-        //public async Task<IActionResult> GetIDUserRole([FromBody] GetUserRoleIDQuery param) => Ok(await _mediator.Send(param));
+        [HttpGet/*, AuthorizationRole("Admin")*/]
+        public async Task<IActionResult> GetIDUserRole([FromBody] GetUserRoleIDQuery param) => Ok(await _mediator.Send(param));
 
-        [HttpPost]
+        [HttpPost/*, AuthorizationRole("Admin,Insert")*/]
         public async Task<IActionResult> InsertUserRole([FromBody] InsertUserRoleCommandQuery param) => Ok(await _mediator.Send(param));
 
-        [HttpPut]
+        [HttpPut/*, AuthorizationRole("Admin,Update")*/]
         public async Task<IActionResult> UpdateUserRole([FromBody] UpdateUserRoleCommandQuery param) => Ok(await _mediator.Send(param));
-        [HttpDelete]
+        [HttpDelete/*, AuthorizationRole("Admin,Delete")*/]
         public async Task<IActionResult> DeleteUserRole([FromBody] DeleteUserRoleCommandQuery param) => Ok(await _mediator.Send(param));
     }
 }
