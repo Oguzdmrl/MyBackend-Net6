@@ -1,6 +1,7 @@
 using Business.TService;
 using DataAccess;
 using DataAccess.Repo.UnitOfWorks;
+using Entities;
 using Entities.JWTEntity;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -82,6 +83,24 @@ void AutoMigrateDatabase(IApplicationBuilder app)
     scope.ServiceProvider.GetRequiredService<AppDBContext>().Database.Migrate();
 }
 
+void InsertUser(IApplicationBuilder app)
+{
+    using var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
+    var context = scope.ServiceProvider.GetRequiredService<AppDBContext>();
+    if (context.Users.Any()) return;
+
+    context.Users.Add(
+        new User
+        {
+            Name = "Admin",
+            Surname = "Developer",
+            Username = "Admin",
+            Password = "1",
+            Email = "Admin@Admin.com",
+            Is_Active = true
+        });
+    context.SaveChanges();
+}
 
 var app = builder.Build();
 
@@ -89,7 +108,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 
 AutoMigrateDatabase(app);
-
+InsertUser(app);
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
