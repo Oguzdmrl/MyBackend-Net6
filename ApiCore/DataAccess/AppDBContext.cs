@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Entities.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess
@@ -13,5 +14,23 @@ namespace DataAccess
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+
+            var datas = ChangeTracker.Entries<BaseEntity<Guid>>();
+            foreach (var data in datas)
+            {
+                _ = data.State switch
+                {
+                    EntityState.Added => data.Entity.Created_Date = DateTime.UtcNow,
+                    EntityState.Modified => data.Entity.Updated_Date = DateTime.UtcNow
+                };
+            }
+
+            return await base.SaveChangesAsync(cancellationToken);
+        }
+
+
     }
 }
